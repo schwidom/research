@@ -1,4 +1,7 @@
 
+% the choosen one according to the benchmark.pl (already tabled)
+cnf_enumeration( RULECOUNT, VARCOUNT, CNF) :- cnf_enumeration3( RULECOUNT, VARCOUNT, CNF).
+
 :- table cnf_enumeration1/3.
 
 cnf_enumeration1( RULECOUNT, VARCOUNT, CNF_ONLY_MINPERMUTATION) :- true
