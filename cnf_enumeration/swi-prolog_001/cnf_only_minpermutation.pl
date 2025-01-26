@@ -69,6 +69,19 @@ cnf_only_minpermutation4( RULECOUNT, VARCOUNT, CNF_ONLY_MINPERMUTATION) :- true
 % (cmd)?- findall( C, ( member( P, [cnf_only_minpermutation1, cnf_only_minpermutation2, cnf_only_minpermutation3, cnf_only_minpermutation4]), aggregate_all( count, call( P, 2, 2, _), C)), L).
 % L = [21, 21, 21, 21].
 
+% (cmd)?- findall( C, ( member( P, [cnf_only_minpermutation1, cnf_only_minpermutation2, cnf_only_minpermutation3, cnf_only_minpermutation4]), aggregate_all( count, call( P, 1, 0, _), C)), L).
+% L = [1, 1, 1, 1].
+% 
+
+
+% (ins)?- findall( C, ( member( P, [cnf_only_minpermutation1, cnf_only_minpermutation2, cnf_only_minpermutation3, cnf_only_minpermutation4]), call( P, 1, 0, C)), L).
+% L = [[[]], [[]], [[]], [[]]].
+% 
+% (ins)?- findall( C, ( member( P, [cnf_minpermutation1, cnf_minpermutation2, cnf_minpermutation3, cnf_minpermutation4]), call( P, 1, 0, _, C)), L).
+% L = [[[]], [[]], [[]], [[]]].
+% 
+
+
 % (ins)?- findall( CNF, cnf_only_minpermutation1( 2, 2, CNF), L1), findall( CNF, cnf_only_minpermutation3( 2, 2, CNF), L2).
 % L1 = L2, L2 = [[[1, 2], [2, 2]], [[1, 2], [2, 1]], [[1, 1], [2, 2]], [[1, 1], [1, 2]], [[0, 2], [2, 2]], [[0, 2], [2, 1]], [[0, 2], [2, 0]], [[0, 2], [1, 2]], [[0, 2], [1, 1]], [[0, 1], [2, 2]], [[0, 1], [2, 1]], [[0, 1], [2, 0]], [[0, 1], [1, 2]], [[0, 1], [1, 1]], [[0, 1], [1, 0]], [[0, 1], [0, 2]], [[0, 0], [2, 2]], [[0, 0], [1, 2]], [[0, 0], [1, 1]], [[0, 0], [0, 2]], [[0, 0], [0, 1]]].
 % 

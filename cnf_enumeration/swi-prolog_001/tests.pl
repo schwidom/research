@@ -22,6 +22,10 @@ test( order0) :- true
 , index0_transposed( [], [], [])
 .
 
+test( helper_001) :- true
+, transposed_msort([[]], [[]])
+.
+
 test( order) :- true
 , L = [ f, g, h, b, a, c, z, w, x]
 , order0( L, LO)

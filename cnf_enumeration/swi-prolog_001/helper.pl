@@ -4,6 +4,8 @@ cnf_maplist_msort_order_index( CNF, CNF_GROUP, CNF_GROUP_ORDER, CNF_GROUP_ORDERE
 , index0( CNF_GROUP_ORDER, CNF_GROUP, CNF_GROUP_ORDERED)
 .
 
+% transposed_msort( [[],[]], [[],[]]) :- !. % wird hier im Moment nicht benötigt
+transposed_msort( [[]], [[]]) :- !. % struktur muss erhalten bleiben
 transposed_msort( LOL1, LOL2) :- true
 , transpose( LOL1, LOL1_TRANSPOSED)
 , msort( LOL1_TRANSPOSED, LOL2_TRANSPOSED)
