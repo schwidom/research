@@ -70,6 +70,21 @@ show_raising_rows( VARCOUNT) :- true
 % (ins)?- show_raising_rows( 5). % 70% hauptspeichernutzung (von 32Gig)
 % 1, 21, 657, ^C
 
+% (cmd)?- show_raising_rows( 6).
+% 1, 28, ^C
+% 
+% (ins)?- show_raising_rows( 7).
+% 1, 36, ^C
+%  
+% (cmd)?- show_raising_rows( 8).
+% 1, 45, ^C
+% 
+% (cmd)?- show_raising_rows( 9).
+% 1, 55, ^C
+% 
+% (ins)?- show_raising_rows( 10).
+% 1, 66, ^C
+
 
 */
 
@@ -132,11 +147,6 @@ show_raising_vars( RULECOUNT, MAXVARCOUNT) :- true
 % ...
 
 */
-
-% rule_sat( ASSOC_IN, CNF, SAT, ASSOC_OUT) :- true
-% , 
-
-% cnf_sat( ASSOC, CNF, SAT) :- true
 
 :- consult( 'cnf_clpb/rule_freevars.pl').
 :- consult( 'cnf_clpb/cnf_freevars.pl').
