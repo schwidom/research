@@ -15,6 +15,13 @@
 
 test( cnf_001) :- true.
 
+test( order0) :- true
+, order0( [], [])
+, order0_transposed( [], [])
+, index0( [], [], [])
+, index0_transposed( [], [], [])
+.
+
 test( order) :- true
 , L = [ f, g, h, b, a, c, z, w, x]
 , order0( L, LO)

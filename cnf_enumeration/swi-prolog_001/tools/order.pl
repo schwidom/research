@@ -2,8 +2,10 @@
 % similar to order in R
 
 order0( LIST, ORDER) :- true
-, length( LIST, LEN), LEN0 is LEN-1
-, numlist( 0, LEN0, INCLIST)
+, length( LIST, LEN)
+% , LEN0 is LEN-1
+% , numlist( 0, LEN0, INCLIST) % numlist( 0, -1, L) is false
+, iota0( LEN, INCLIST)
 , pairs_keys_values(PAIRS, LIST, INCLIST)
 , msort( PAIRS, SPAIRS)
 , pairs_values( SPAIRS, ORDER).
