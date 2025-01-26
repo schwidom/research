@@ -1,3 +1,13 @@
+
+/*
+% A powerset of n elements creates 2^n sets.
+
+% VARCOUNT is the number of CNF-literals
+
+% A rule here is 
+
+*/
+
 create_rule( VARCOUNT, RULE) :- combine_012_fast( VARCOUNT, RULE) .
 
 create_cnf( _RULE_LESSER, RULECOUNT, _VARCOUNT, CNF) :- RULECOUNT = 0, CNF = [].
@@ -15,10 +25,10 @@ create_cnf( RULECOUNT, VARCOUNT, CNF) :- create_cnf( 0, RULECOUNT, VARCOUNT, CNF
 
 /*
 
-% (ins)?- aggregate_all( count, create_cnf( 2, 2, CNF), C).
+% (ins)?- aggregate_all( count, create_cnf( 2, 2, CNF), C). % without reduction RULE_LESSER @< RULE
 % C = 81.
 
-% nach Reduktion
+% after reduction
 % (ins)?- aggregate_all( count, create_cnf( 2, 2, CNF), C).
 % C = 36.
 

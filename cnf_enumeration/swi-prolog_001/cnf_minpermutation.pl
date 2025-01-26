@@ -2,7 +2,7 @@
 
 cnf_minpermutation1( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 , group_sorted_cnf_table( RULECOUNT, VARCOUNT, CNF)
-, setof( CNF_ORDERED, cnf_order1( CNF, CNF_ORDERED), CNF_ORDERED_SET)
+, aggregate_all( set( CNF_ORDERED), cnf_order1( CNF, CNF_ORDERED), CNF_ORDERED_SET)
 , CNF_ORDERED_SET = [ CNF_MINPERMUTATION | _ ] 
 .
 
@@ -10,7 +10,7 @@ cnf_minpermutation1( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 
 cnf_minpermutation2( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 , create_cnf( RULECOUNT, VARCOUNT, CNF)
-, setof( CNF_ORDERED, cnf_order1( CNF, CNF_ORDERED), CNF_ORDERED_SET)
+, aggregate_all( set( CNF_ORDERED), cnf_order1( CNF, CNF_ORDERED), CNF_ORDERED_SET)
 , CNF_ORDERED_SET = [ CNF_MINPERMUTATION | _ ] 
 .
 
@@ -26,7 +26,7 @@ cnf_minpermutation2( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 
 cnf_minpermutation3( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 , create_cnf( RULECOUNT, VARCOUNT, CNF)
-, setof( CNF_ORDERED, cnf_order2( CNF, CNF_ORDERED), CNF_ORDERED_SET)
+, aggregate_all( set( CNF_ORDERED), cnf_order2( CNF, CNF_ORDERED), CNF_ORDERED_SET)
 , CNF_ORDERED_SET = [ CNF_MINPERMUTATION | _ ] 
 .
 
@@ -34,6 +34,6 @@ cnf_minpermutation3( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 cnf_minpermutation4( RULECOUNT, VARCOUNT, CNF, CNF_MINPERMUTATION) :- true
 , create_cnf_all( RULECOUNT, VARCOUNT, CNF)
 , is_set( CNF)
-, setof( CNF_ORDERED, cnf_order2( CNF, CNF_ORDERED), CNF_ORDERED_SET)
+, aggregate_all( set( CNF_ORDERED), cnf_order2( CNF, CNF_ORDERED), CNF_ORDERED_SET)
 , CNF_ORDERED_SET = [ CNF_MINPERMUTATION | _ ] 
 .

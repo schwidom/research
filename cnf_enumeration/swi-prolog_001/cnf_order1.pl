@@ -1,5 +1,7 @@
-cnf_order1( CNF, CNF_ORDERED) :- true
 
+cnf_order1( [], []) :- !.
+
+cnf_order1( CNF, CNF_ORDERED) :- true
 , member( CHOOSED_RULE, CNF)
 , order0( CHOOSED_RULE, CHOOSED_RULE_ORDER)
 , index0( CHOOSED_RULE_ORDER, CHOOSED_RULE, CHOOSED_RULE_ORDERED)

@@ -33,7 +33,7 @@
 :- consult( 'benchmark.pl').
 
 show_raising_rows( VARCOUNT) :- true
-, forall( between( 1, inf, RULECOUNT), ( true
+, forall( between( 0, inf, RULECOUNT), ( true
    , aggregate_all( count, cnf_only_minpermutation3( RULECOUNT, VARCOUNT, _CNF), COUNT)
    , write( COUNT)
    , write( ', ')
@@ -45,26 +45,30 @@ show_raising_rows( VARCOUNT) :- true
 
 /*
 
+% (ins)?- show_raising_rows( 0).
+% 1, 1, 0, 
+% false.
+
 % https://oeis.org/search?q=0%2C+0%2C+3%2C+3%2C+1%2C+0&language=english&go=Search # 0, 0, 3, 3, 1, 0
 % 
 % (ins)?- show_raising_rows( 1).
-% 3, 3, 1, 0
+% 1, 3, 3, 1, 0
 % false.
 % 
 % 
 % (ins)?- show_raising_rows( 2).
-% 6, 21, 47, 69, 69, 47, 21, 6, 1, 0
+% 1, 6, 21, 47, 69, 69, 47, 21, 6, 1, 0
 % false.
 
 % (ins)?- show_raising_rows( 3).
-% 10, 82, 573, 3176, 14066, 50646, 150508, 
+% 1, 10, 82, 573, 3176, 14066, 50646, 150508, 
 % ERROR: '$tbl_wkl_add_answer'/4: Not enough resources: private_table_space
 
 % (ins)?- show_raising_rows( 4).
-% 15, 252, 4558, 76545, ^C
+% 1, 15, 252, 4558, 76545, ^C
 
 % (ins)?- show_raising_rows( 5). % 70% hauptspeichernutzung (von 32Gig)
-% 21, 657, ^C
+% 1, 21, 657, ^C
 
 
 */
