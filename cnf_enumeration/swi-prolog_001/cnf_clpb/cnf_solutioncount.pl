@@ -2,7 +2,7 @@
 :- table cnf_solutioncount/5.
 
 cnf_solutioncount( RULECOUNT, VARCOUNT, CNF, SAT_OUT, COUNT) :- true
-, cnf_only_minpermutation3( RULECOUNT, VARCOUNT, CNF)
+, cnf_enumeration3( RULECOUNT, VARCOUNT, CNF)
 , cnf_sat( CNF, SAT)
 , copy_term( SAT, SAT_OUT)
 , aggregate_all( count, ( sat(SAT), term_variables( SAT, V), labeling( V) ), COUNT)

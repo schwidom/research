@@ -87,26 +87,26 @@ test( cnf_vs_all_3_2) :- true
 % .
 
 % test( cnf_order_001) :- true
-% , findall( CNF, cnf_only_minpermutation1( 2, 2, CNF), L1)
-% , findall( CNF, cnf_only_minpermutation3( 2, 2, CNF), L2)
+% , findall( CNF, cnf_enumeration1( 2, 2, CNF), L1)
+% , findall( CNF, cnf_enumeration3( 2, 2, CNF), L2)
 % , L1 == L2
 % .
 % 
 % test( cnf_order_002) :- true
-% , findall( CNF, cnf_only_minpermutation1( 2, 2, CNF), L1)
-% , findall( CNF, cnf_only_minpermutation4( 2, 2, CNF), L2)
+% , findall( CNF, cnf_enumeration1( 2, 2, CNF), L1)
+% , findall( CNF, cnf_enumeration4( 2, 2, CNF), L2)
 % , L1 == L2
 % .
 
 test( cnf_order_003) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation1( 3, 3, CNF), L1)
-, aggregate_all( set(CNF), cnf_only_minpermutation2( 3, 3, CNF), L2)
+, aggregate_all( set(CNF), cnf_enumeration1( 3, 3, CNF), L1)
+, aggregate_all( set(CNF), cnf_enumeration2( 3, 3, CNF), L2)
 , L1 == L2
 .
 
 test( cnf_order_004) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation3( 2, 3, CNF), L1)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 2, 3, CNF), L2)
+, aggregate_all( set(CNF), cnf_enumeration3( 2, 3, CNF), L1)
+, aggregate_all( set(CNF), cnf_enumeration4( 2, 3, CNF), L2)
 , L1 == L2
 .
 
@@ -118,36 +118,36 @@ normalize_001_4_comparison( L_PRE, L) :- true
 
 
 test( cnf_order_005) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation1( 3, 2, CNF), L1_PRE)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 3, 2, CNF), L2_PRE)
+, aggregate_all( set(CNF), cnf_enumeration1( 3, 2, CNF), L1_PRE)
+, aggregate_all( set(CNF), cnf_enumeration4( 3, 2, CNF), L2_PRE)
 , normalize_001_4_comparison( L1_PRE, L1)
 , normalize_001_4_comparison( L2_PRE, L2)
 , L1 == L2
 .
 
 test( cnf_order_005_failing, [fail]) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation1( 3, 2, CNF), L1)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 3, 2, CNF), L2)
+, aggregate_all( set(CNF), cnf_enumeration1( 3, 2, CNF), L1)
+, aggregate_all( set(CNF), cnf_enumeration4( 3, 2, CNF), L2)
 , L1 == L2
 .
 
 test( cnf_order_006) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation1( 2, 3, CNF), L1)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 2, 3, CNF), L2)
+, aggregate_all( set(CNF), cnf_enumeration1( 2, 3, CNF), L1)
+, aggregate_all( set(CNF), cnf_enumeration4( 2, 3, CNF), L2)
 , L1 == L2
 .
 
 
 test( cnf_order_007) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation3( 3, 3, CNF), L1)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 3, 3, CNF), L2)
+, aggregate_all( set(CNF), cnf_enumeration3( 3, 3, CNF), L1)
+, aggregate_all( set(CNF), cnf_enumeration4( 3, 3, CNF), L2)
 , L1 == L2
 .
 
 % 29.567 sec
 % test( cnf_order_007_3_4) :- true
-% , aggregate_all( set(CNF), cnf_only_minpermutation3( 3, 4, CNF), L1_PRE)
-% , aggregate_all( set(CNF), cnf_only_minpermutation4( 3, 4, CNF), L2_PRE)
+% , aggregate_all( set(CNF), cnf_enumeration3( 3, 4, CNF), L1_PRE)
+% , aggregate_all( set(CNF), cnf_enumeration4( 3, 4, CNF), L2_PRE)
 % , normalize_001_4_comparison( L1_PRE, L1)
 % , normalize_001_4_comparison( L2_PRE, L2)
 % , L1 == L2
@@ -155,8 +155,8 @@ test( cnf_order_007) :- true
 
 % 26.135 sec
 % test( cnf_order_007_4_3) :- true
-% , aggregate_all( set(CNF), cnf_only_minpermutation3( 4, 3, CNF), L1_PRE)
-% , aggregate_all( set(CNF), cnf_only_minpermutation4( 4, 3, CNF), L2_PRE)
+% , aggregate_all( set(CNF), cnf_enumeration3( 4, 3, CNF), L1_PRE)
+% , aggregate_all( set(CNF), cnf_enumeration4( 4, 3, CNF), L2_PRE)
 % , normalize_001_4_comparison( L1_PRE, L1)
 % , normalize_001_4_comparison( L2_PRE, L2)
 % , L1 == L2
@@ -179,22 +179,22 @@ normalize_002_and_compare( L1_PRE, L2_PRE) :- true
 .
 
 test( cnf_order_008) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation1( 3, 3, CNF), L1_PRE)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 3, 3, CNF), L2_PRE)
+, aggregate_all( set(CNF), cnf_enumeration1( 3, 3, CNF), L1_PRE)
+, aggregate_all( set(CNF), cnf_enumeration4( 3, 3, CNF), L2_PRE)
 , normalize_002_and_compare( L1_PRE, L2_PRE)
 .
 
 test( cnf_order_008_failing, [fail]) :- true
-, aggregate_all( set(CNF), cnf_only_minpermutation1( 3, 3, CNF), L1_PRE)
-, aggregate_all( set(CNF), cnf_only_minpermutation4( 3, 3, CNF), L2_PRE)
+, aggregate_all( set(CNF), cnf_enumeration1( 3, 3, CNF), L1_PRE)
+, aggregate_all( set(CNF), cnf_enumeration4( 3, 3, CNF), L2_PRE)
 , normalize_001_4_comparison( L1_PRE, L1)
 , normalize_001_4_comparison( L2_PRE, L2)
 , L1 == L2
 .
 
 % test( cnf_order_009) :- true
-% , aggregate_all( set(CNF), cnf_only_minpermutation1( 4, 4, CNF), L1_PRE)
-% , aggregate_all( set(CNF), cnf_only_minpermutation4( 4, 4, CNF), L2_PRE)
+% , aggregate_all( set(CNF), cnf_enumeration1( 4, 4, CNF), L1_PRE)
+% , aggregate_all( set(CNF), cnf_enumeration4( 4, 4, CNF), L2_PRE)
 % , normalize_002_and_compare( L1_PRE, L2_PRE)
 % .
 

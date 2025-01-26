@@ -26,7 +26,7 @@
 
 :- consult( 'cnf_minpermutation.pl').
 
-:- consult( 'cnf_only_minpermutation.pl').
+:- consult( 'cnf_enumeration.pl').
 
 :- consult( 'group_sorted_cnf_table.pl').
 
@@ -34,7 +34,7 @@
 
 show_raising_rows( VARCOUNT) :- true
 , forall( between( 0, inf, RULECOUNT), ( true
-   , aggregate_all( count, cnf_only_minpermutation3( RULECOUNT, VARCOUNT, _CNF), COUNT)
+   , aggregate_all( count, cnf_enumeration3( RULECOUNT, VARCOUNT, _CNF), COUNT)
    , write( COUNT)
    , write( ', ')
    , flush_output
@@ -75,7 +75,7 @@ show_raising_rows( VARCOUNT) :- true
 
 show_raising_vars( RULECOUNT, MAXVARCOUNT) :- true
 , forall( between( 0, MAXVARCOUNT, VARCOUNT), ( true
-   , aggregate_all( count, cnf_only_minpermutation3( RULECOUNT, VARCOUNT, _CNF), COUNT)
+   , aggregate_all( count, cnf_enumeration3( RULECOUNT, VARCOUNT, _CNF), COUNT)
    , write( COUNT)
    , write( ', ')
    , flush_output
