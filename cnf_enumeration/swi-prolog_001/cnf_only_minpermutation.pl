@@ -16,7 +16,7 @@ cnf_only_minpermutation2( RULECOUNT, VARCOUNT, CNF_ONLY_MINPERMUTATION) :- true
 /*
 
 % (cmd)?- aggregate_all( count, cnf_only_minpermutation1( 3, 3, CNF2), C).
-% C = 573. % die Zahl hätte in ../swipl/ auftauchen müssen.
+% C = 573. 
 
 % (ins)?- time( aggregate_all( count, cnf_only_minpermutation1( 4, 3, CNF2), C)).
 % % 41,668,798 inferences, 3.439 CPU in 3.439 seconds (100% CPU, 12116207 Lips)
