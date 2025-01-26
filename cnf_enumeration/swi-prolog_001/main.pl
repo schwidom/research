@@ -85,9 +85,13 @@ show_raising_vars( RULECOUNT, MAXVARCOUNT) :- true
 
 /*
 
-% (ins)?- show_raising_vars( 1, 10).
-% 0, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66 # A253145 Triangular numbers (A000217) omitting the term 1.
+% (ins)?- show_raising_vars( 0, 100).
+% 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+% true.
 
+% (cmd)?- show_raising_vars( 1, 13).
+% 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, # A253145 Triangular numbers (A000217) omitting the term 1.
+% true.
 
 % (ins)?- show_raising_vars( 2, 10).
 % 0, 3, 21, 82, 252, 657, 1533, 3276, ^C
