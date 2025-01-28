@@ -1,14 +1,14 @@
 
 % the choosen one according to the benchmark.pl (already tabled)
 % public referred to
-cnf_enumeration( RULECOUNT, VARCOUNT, CNF) :- true
+cnf_enumeration_config_001( RULECOUNT, VARCOUNT, CNF) :- true % see cnf_enumeration_A380518.pl
 , nb_setval( cnf_config_has_false_rules, true)
 , cnf_enumeration3( RULECOUNT, VARCOUNT, CNF)
 .
 
 % the choosen one according to the benchmark.pl (already tabled)
 % will be public referred to
-cnf_enumeration_config_002( RULECOUNT, VARCOUNT, CNF) :- true
+cnf_enumeration_config_002( RULECOUNT, VARCOUNT, CNF) :- true % see cnf_enumeration_A380610.pl
 , nb_setval( cnf_config_has_false_rules, false)
 , cnf_enumeration3( RULECOUNT, VARCOUNT, CNF)
 .
