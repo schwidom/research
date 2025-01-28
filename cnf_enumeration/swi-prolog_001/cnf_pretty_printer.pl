@@ -117,6 +117,7 @@ cnf_pretty_printer_string( CNF, STRING) :- true
 */
 
 % depends on which file is loaded cnf_enumeration_A380518.pl / cnf_enumeration_A380610.pl
+% public referred
 cnf_enumeration_pretty_printer( RULECOUNT, VARCOUNT) :- true
 , TERM1 = ( cnf_enumeration( RULECOUNT, VARCOUNT, CNF), cnf_pretty_printer_string(CNF,CNF_S) )
 , forall( TERM1, ( write( CNF), write( ' => '), writeln(CNF_S) ))
