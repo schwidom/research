@@ -14,6 +14,7 @@
 :- consult( 'tools/order.pl').
 :- consult( 'tools/permutation.pl').
 
+:- consult( 'cnf_pretty_printer.pl').
 :- consult( 'create_cnf.pl').
 :- consult( 'create_cnf_all.pl').
 
