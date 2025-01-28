@@ -1,4 +1,6 @@
 
+:- use_module( library( apply)). % exclude
+
 /*
 % A powerset of n elements creates 2^n sets.
 
@@ -8,7 +10,14 @@
 
 */
 
-create_rule( VARCOUNT, RULE) :- combine_012_fast( VARCOUNT, RULE) .
+create_rule( VARCOUNT, RULE) :- true
+, combine_012_fast( VARCOUNT, RULE) 
+, nb_getval( cnf_config_has_false_rules, HAS_FALSE_RULES)
+, ( HAS_FALSE_RULES == true 
+     -> true 
+     ; ( exclude( =(2), RULE, []) -> false ; true )
+  )
+.
 
 create_cnf( _RULE_LESSER, RULECOUNT, _VARCOUNT, CNF) :- RULECOUNT = 0, CNF = [].
 

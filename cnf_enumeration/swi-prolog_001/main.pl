@@ -8,6 +8,7 @@
 :- set_prolog_flag( table_space, 20_737_418_240).
 :- set_prolog_flag( answer_write_options, [quoted(true), portray(true), max_depth(250), spacing(next_argument)]).
 
+:- consult( 'cnf_configuration.pl').
 
 :- consult( 'tools/combine.pl').
 :- consult( 'tools/order.pl').
@@ -44,6 +45,9 @@ show_raising_rows( VARCOUNT) :- true
 .
 
 /*
+
+% in case:
+% nb_setval( cnf_config_has_false_rules, true).
 
 % (ins)?- show_raising_rows( 0).
 % 1, 1, 0, 
@@ -85,6 +89,32 @@ show_raising_rows( VARCOUNT) :- true
 % (ins)?- show_raising_rows( 10).
 % 1, 66, ^C
 
+% in case:
+% nb_setval( cnf_config_has_false_rules, false).
+
+% (ins)?- show_raising_rows( 0).
+% 1, 0, 
+% false.
+% 
+% (ins)?- show_raising_rows( 1).
+% 1, 2, 1, 0, 
+% false.
+% 
+% (ins)?- show_raising_rows( 2).
+% 1, 5, 16, 31, 38, 31, 16, 5, 1, 0, 
+% false.
+% 
+% (ins)?- show_raising_rows( 3).
+% 1, 9, 73, 573, 2676, 11390, 39256
+% 
+% (cmd)?- show_raising_rows( 4).
+% 1, 14, 238, 4320,
+
+% (cmd)?- show_raising_rows( 5).
+% 1, 20, 637, 
+
+
+
 
 */
 
@@ -99,6 +129,9 @@ show_raising_vars( RULECOUNT, MAXVARCOUNT) :- true
 .
 
 /*
+
+% in case:
+% nb_setval( cnf_config_has_false_rules, true).
 
 % (ins)?- show_raising_vars( 0, 100).
 % 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
@@ -130,6 +163,29 @@ show_raising_vars( RULECOUNT, MAXVARCOUNT) :- true
 % (cmd)?- show_raising_vars( 7, 3).
 % 0, 0, 21, , 150508, 
 % true.
+
+% in case:
+% nb_setval( cnf_config_has_false_rules, false).
+
+% (ins)?- show_raising_vars( 0, 100).
+% 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+% true.
+% 
+% (ins)?- show_raising_vars( 1, 100).
+% 0, 2, 6, 9, 14, 20, 27, 35, 44, 54, 65, 77, 90, 104, 
+% 
+% (ins)?- show_raising_vars( 2, 100).
+% 0, 1, 16, 73, 238, 637, 1506, 
+% 
+% (ins)?- show_raising_vars( 3, 100).
+% 0, 0, 31, 500, 4320, 
+% 
+% (ins)?- show_raising_vars( 4, 100).
+% 0, 0, 38, 2676, 
+% 
+% (ins)?- show_raising_vars( 5, 100).
+% 0, 0, 31, 11390, 
+
 
 */
 
