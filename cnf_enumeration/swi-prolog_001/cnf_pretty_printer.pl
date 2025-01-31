@@ -39,12 +39,12 @@ idx0_rule_pretty_printer( IDX, RULE, LIST) :- true
 .
 
 rule_pretty_printer( RULE, LIST) :- true
-, nb_getval( cnf_config_pp, [_, _, _, OR])
+% , nb_getval( cnf_config_pp, [_, _, _, OR])
 , idx0_rule_pretty_printer( 0, RULE, LIST_CODES)
 , foldl( [X, Y, Z]>>( 
-    X==[] -> Z=Y ; 
+    X==[] -> Z=Y; 
     Y==[] -> Z = [X];
-    Z = [X, OR | Y]
+    nb_getval( cnf_config_pp, [_, _, _, OR]), Z = [X, OR | Y]
    )
   , LIST_CODES, [], LISTREV)
 , ( LISTREV == [] -> LIST = [`false`] ; reverse( LISTREV, LIST) )
@@ -78,10 +78,10 @@ rule_pretty_printer( RULE, LIST) :- true
 
 
 cnf_pretty_printer( CNF, FORMATTED) :- true 
-, nb_getval( cnf_config_pp, [_, _, AND, _])
+% , nb_getval( cnf_config_pp, [_, _, AND, _]) 
 , maplist( rule_pretty_printer, CNF, CNF2)
 , maplist( [A, B]>>( length( A, 1) -> A=B ; append( [[`(`], A, [`)`]], B) ), CNF2, CNF3)
-, foldl( [X, Y, Z]>>( Y == [] -> Z = [X] ; Z = [ X, AND | Y]) , CNF3, [], FORMATTEDREV)
+, foldl( [X, Y, Z]>>( Y == [] -> Z = [X] ; nb_getval( cnf_config_pp, [_, _, AND, _]), Z = [ X, AND | Y]) , CNF3, [], FORMATTEDREV)
 , reverse( FORMATTEDREV, FORMATTED)
 .
 
