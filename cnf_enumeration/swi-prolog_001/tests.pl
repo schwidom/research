@@ -210,9 +210,9 @@ test( cnf_order_008_failing, [fail]) :- true
 :- end_tests( cnf).
 
 run_my_tests :- true
-, nb_setval( cnf_config_has_false_rules, true)
+, cnf_configuration_set_has_false_rules( true)
 , run_tests
-, nb_setval( cnf_config_has_false_rules, false)
+, cnf_configuration_set_has_false_rules( false)
 , run_tests
 .
 

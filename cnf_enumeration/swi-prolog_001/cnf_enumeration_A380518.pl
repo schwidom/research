@@ -1,7 +1,7 @@
 
 :- consult( 'main.pl').
 
-cnf_setup :- nb_setval( cnf_config_has_false_rules, false).
+cnf_setup :- cnf_configuration_set_has_false_rules( false).
 
 :- cnf_setup.
 
