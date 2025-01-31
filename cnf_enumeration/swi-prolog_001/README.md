@@ -16,9 +16,13 @@ $ swipl -s main.pl % you may first set the config variable cnf_config_has_false_
   
 % These are all structurally differrent CNFs with 3 rules and 3 literals which have exactly 6 solutions:  
   
-?- nb_setval( cnf_config_has_false_rules, false).  
-?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT =6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
-(~a \/ b \/ c) /\ (a \/ b \/ c) /\ (b \/ c)  
-(~a \/ ~b \/ c) /\ (~a \/ b \/ c) /\ (~a \/ c)  
-(~a \/ ~b \/ ~c) /\ (~a \/ ~b \/ c) /\ (~a \/ ~b)  
+?- cnf_config_pp_utf8.  
+true.  
   
+?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
+(¬a ∨ b ∨ c) ∧ (a ∨ b ∨ c) ∧ (b ∨ c)  
+(¬a ∨ ¬b ∨ c) ∧ (¬a ∨ b ∨ c) ∧ (¬a ∨ c)  
+(¬a ∨ ¬b ∨ ¬c) ∧ (¬a ∨ ¬b ∨ c) ∧ (¬a ∨ ¬b)  
+false.  
+
+
