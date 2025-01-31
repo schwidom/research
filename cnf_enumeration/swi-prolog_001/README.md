@@ -16,15 +16,6 @@ $ swipl -s main.pl % you may first set the config variable cnf_config_has_false_
   
 % These are all structurally differrent CNFs with 3 rules and 3 literals which have exactly 6 solutions:  
   
-?- cnf_config_pp_utf8.  
-true.  
-  
-(ins)?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
-(¬A ∨ B ∨ C) ∧ (A ∨ B ∨ C) ∧ (B ∨ C)  
-(¬A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ C) ∧ (¬A ∨ C)  
-(¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C) ∧ (¬A ∨ ¬B)  
-false.  
-
 (ins)?- cnf_config_pp_github.    
 true.    
     
@@ -39,5 +30,325 @@ true.
 (\neg A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B \lor C) \land (\neg A \lor \neg B)
 ```
 false.  
+  
+% The same formula cn also be printed with logical operators in utf8 
+
+?- cnf_config_pp_utf8.  
+true.  
+  
+(ins)?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
+(¬A ∨ B ∨ C) ∧ (A ∨ B ∨ C) ∧ (B ∨ C)  
+(¬A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ C) ∧ (¬A ∨ C)  
+(¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C) ∧ (¬A ∨ ¬B)  
+false.  
+
+When we have 3 literals then there exists 2^3 = 8 boolean combinations. In the previous example we chose all CNF formulae which can be satisfied with 6 combinations. That means 8-6 = 2 combinations lead to false. An assumption could be: If we invert the variables then we get all CNFs which can be satisfied with 2 combinations. This is obviously not true:  
+  
+(ins)?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=2, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.
+```math
+(A \lor B) \land A \land C
+```
+```math
+(A \lor B \lor C) \land A \land B
+```
+```math
+\neg A \land (B \lor C) \land B
+```
+```math
+\neg A \land (A \lor B) \land (B \lor C)
+```
+```math
+\neg A \land (A \lor B \lor C) \land B
+```
+```math
+\neg A \land (A \lor B \lor C) \land (A \lor B)
+```
+```math
+(\neg A \lor B) \land \neg C \land B
+```
+```math
+(\neg A \lor B) \land \neg C \land (B \lor C)
+```
+```math
+(\neg A \lor B) \land \neg C \land (A \lor B)
+```
+```math
+(\neg A \lor B) \land \neg C \land (A \lor B \lor C)
+```
+```math
+(\neg A \lor B) \land B \land C
+```
+```math
+(\neg A \lor B) \land (B \lor C) \land A
+```
+```math
+(\neg A \lor B) \land (B \lor \neg C) \land A
+```
+```math
+(\neg A \lor B) \land (A \lor C) \land A
+```
+```math
+(\neg A \lor B) \land (A \lor \neg C) \land (\neg B \lor C)
+```
+```math
+(\neg A \lor B) \land (A \lor \neg C) \land A
+```
+```math
+(\neg A \lor B) \land (A \lor \neg C) \land (A \lor C)
+```
+```math
+(\neg A \lor B) \land (A \lor \neg C) \land \neg A
+```
+```math
+(\neg A \lor B) \land (A \lor B) \land C
+```
+```math
+(\neg A \lor B) \land (A \lor B) \land B
+```
+```math
+(\neg A \lor B) \land (A \lor B \lor C) \land A
+```
+```math
+(\neg A \lor B) \land (A \lor \neg B) \land C
+```
+```math
+(\neg A \lor B) \land (A \lor \neg B) \land \neg C
+```
+```math
+(\neg A \lor B) \land \neg A \land C
+```
+```math
+(\neg A \lor B) \land \neg A \land \neg C
+```
+```math
+(\neg A \lor B) \land \neg A \land (A \lor C)
+```
+```math
+(\neg A \lor B) \land (\neg A \lor C) \land \neg B
+```
+```math
+(\neg A \lor B \lor C) \land B \land C
+```
+```math
+(\neg A \lor B \lor C) \land \neg B \land C
+```
+```math
+(\neg A \lor B \lor C) \land \neg B \land (B \lor C)
+```
+```math
+(\neg A \lor B \lor C) \land \neg B \land (A \lor C)
+```
+```math
+(\neg A \lor B \lor C) \land \neg B \land (A \lor B \lor C)
+```
+```math
+(\neg A \lor B \lor C) \land (\neg B \lor C) \land B
+```
+```math
+(\neg A \lor B \lor C) \land (\neg B \lor C) \land A
+```
+```math
+(\neg A \lor B \lor C) \land A \land B
+```
+```math
+(\neg A \lor B \lor C) \land (A \lor \neg B) \land \neg C
+```
+```math
+(\neg A \lor B \lor C) \land (A \lor \neg B) \land B
+```
+```math
+(\neg A \lor B \lor C) \land (A \lor \neg B) \land \neg A
+```
+```math
+(\neg A \lor B \lor C) \land (A \lor \neg B \lor C) \land \neg C
+```
+```math
+(\neg A \lor B \lor C) \land \neg A \land B
+```
+```math
+(\neg A \lor B \lor C) \land \neg A \land \neg B
+```
+```math
+(\neg A \lor B \lor C) \land \neg A \land (A \lor B)
+```
+```math
+(\neg A \lor B \lor C) \land (\neg A \lor B) \land \neg B
+```
+```math
+(\neg A \lor B \lor C) \land (\neg A \lor B) \land A
+```
+```math
+(\neg A \lor \neg B) \land \neg C \land (A \lor B)
+```
+```math
+(\neg A \lor \neg B) \land \neg C \land (A \lor B \lor C)
+```
+```math
+(\neg A \lor \neg B) \land (A \lor C) \land A
+```
+```math
+(\neg A \lor \neg B) \land (A \lor \neg C) \land (B \lor C)
+```
+```math
+(\neg A \lor \neg B) \land (A \lor \neg C) \land A
+```
+```math
+(\neg A \lor \neg B) \land (A \lor \neg C) \land (A \lor C)
+```
+```math
+(\neg A \lor \neg B) \land (A \lor \neg C) \land \neg A
+```
+```math
+(\neg A \lor \neg B) \land (A \lor B) \land C
+```
+```math
+(\neg A \lor \neg B) \land (A \lor B \lor C) \land A
+```
+```math
+(\neg A \lor \neg B) \land (A \lor B \lor \neg C) \land C
+```
+```math
+(\neg A \lor \neg B) \land (A \lor B \lor \neg C) \land A
+```
+```math
+(\neg A \lor \neg B) \land \neg A \land C
+```
+```math
+(\neg A \lor \neg B) \land \neg A \land \neg C
+```
+```math
+(\neg A \lor \neg B) \land \neg A \land (A \lor C)
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor C) \land \neg C
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor C) \land B
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor \neg C) \land B
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B) \land C
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B) \land \neg C
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B) \land (A \lor C)
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B) \land (A \lor \neg C)
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B) \land \neg A
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B \lor C) \land \neg C
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B \lor C) \land B
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg C \land (A \lor B)
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg C \land (A \lor B \lor C)
+```
+```math
+(\neg A \lor \neg B \lor C) \land A \land C
+```
+```math
+(\neg A \lor \neg B \lor C) \land (A \lor C) \land B
+```
+```math
+(\neg A \lor \neg B \lor C) \land (A \lor \neg C) \land C
+```
+```math
+(\neg A \lor \neg B \lor C) \land (A \lor \neg C) \land B
+```
+```math
+(\neg A \lor \neg B \lor C) \land (A \lor \neg C) \land \neg A
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land C
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land \neg C
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land B
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land \neg B
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land (A \lor C)
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land (A \lor B)
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor C) \land \neg C
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor C) \land A
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor \neg C) \land C
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor \neg C) \land B
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor B) \land \neg C
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor B) \land \neg B
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor B \lor C) \land \neg C
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor B \lor C) \land A
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor B \lor \neg C) \land A
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor \neg B) \land A
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (A \lor B) \land C
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land \neg A \land B
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land \neg A \land \neg B
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land \neg A \land (A \lor B)
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (\neg A \lor B) \land C
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (\neg A \lor B) \land \neg B
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (\neg A \lor B \lor C) \land A
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B) \land A
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B \lor C) \land A
+```
+false.  
+
+
+  
+
 
 
