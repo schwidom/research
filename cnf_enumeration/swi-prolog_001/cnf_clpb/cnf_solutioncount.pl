@@ -1,6 +1,7 @@
 
 :- table cnf_solutioncount/5.
 
+% public referred to
 cnf_solutioncount( RULECOUNT, VARCOUNT, CNF, SAT_OUT, COUNT) :- true
 , cnf_enumeration3( RULECOUNT, VARCOUNT, CNF)
 , cnf_sat( CNF, SAT)

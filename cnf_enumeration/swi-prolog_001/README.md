@@ -19,10 +19,25 @@ $ swipl -s main.pl % you may first set the config variable cnf_config_has_false_
 ?- cnf_config_pp_utf8.  
 true.  
   
-?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
-(¬a ∨ b ∨ c) ∧ (a ∨ b ∨ c) ∧ (b ∨ c)  
-(¬a ∨ ¬b ∨ c) ∧ (¬a ∨ b ∨ c) ∧ (¬a ∨ c)  
-(¬a ∨ ¬b ∨ ¬c) ∧ (¬a ∨ ¬b ∨ c) ∧ (¬a ∨ ¬b)  
+(ins)?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
+(¬A ∨ B ∨ C) ∧ (A ∨ B ∨ C) ∧ (B ∨ C)  
+(¬A ∨ ¬B ∨ C) ∧ (¬A ∨ B ∨ C) ∧ (¬A ∨ C)  
+(¬A ∨ ¬B ∨ ¬C) ∧ (¬A ∨ ¬B ∨ C) ∧ (¬A ∨ ¬B)  
+false.  
+
+(ins)?- cnf_config_pp_github.    
+true.    
+    
+(ins)?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
+```math
+(\neg A \lor B \lor C) \land (A \lor B \lor C) \land (B \lor C)
+```
+```math
+(\neg A \lor \neg B \lor C) \land (\neg A \lor B \lor C) \land (\neg A \lor C)
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B \lor C) \land (\neg A \lor \neg B)
+```
 false.  
 
 

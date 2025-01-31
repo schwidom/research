@@ -1,11 +1,13 @@
 
-cnf_config_pp_ascii :- nb_setval( cnf_config_pp, [ ascii, `~`, ` /\\ `, ` \\/ `]).
-cnf_config_pp_markdown :- nb_setval( cnf_config_pp, [ markdown, `$\\neg$`, ` $\\wedge$ `, ` $\\vee$ `]).
-cnf_config_pp_utf8 :- nb_setval( cnf_config_pp, [ utf8, `¬`, ` ∧ `, ` ∨ `]).
+cnf_config_pp_ascii :- nb_setval( cnf_config_pp, [ ascii, `~`, ` /\\ `, ` \\/ `, ``, ``]).
+cnf_config_pp_markdown :- nb_setval( cnf_config_pp, [ markdown, `$\\neg$`, ` $\\wedge$ `, ` $\\vee$ `, ``, ``]).
+cnf_config_pp_utf8 :- nb_setval( cnf_config_pp, [ utf8, `¬`, ` ∧ `, ` ∨ `, ``, ``]).
+cnf_config_pp_github :- nb_setval( cnf_config_pp, [ github, `\\neg `, ` \\land `, ` \\lor `, `\`\`\`math\n`, `\n\`\`\``]).
 
 :- cnf_config_pp_ascii. % default
 
-letters( LCODES) :- [ACODE , ZCODE] = `az` , numlist( ACODE, ZCODE, LCODES) .
+% letters( LCODES) :- [ACODE , ZCODE] = `az` , numlist( ACODE, ZCODE, LCODES) .
+letters( LCODES) :- [ACODE , ZCODE] = `AZ` , numlist( ACODE, ZCODE, LCODES) .
 
 num0_variablename_codes( NUM, CODES) :- true
 , letters( LCODES)
@@ -25,7 +27,7 @@ num0_variablename( NUM, NAME) :- true
 
 idx0_rule_pretty_printer( IDX, RULE, LIST) :- IDX=_, RULE=[], LIST=[], !.
 idx0_rule_pretty_printer( IDX, RULE, LIST) :- true
-, nb_getval( cnf_config_pp, [_, NOT, _, _])
+, nb_getval( cnf_config_pp, [_, NOT | _])
 , num0_variablename_codes( IDX, NAME)
 , IDXNEXT is IDX + 1
 , RULE = [ RULENUMBER | TR ] % RULENUMBER : 0 = ~a, 1 = a, 2 = false
@@ -39,12 +41,12 @@ idx0_rule_pretty_printer( IDX, RULE, LIST) :- true
 .
 
 rule_pretty_printer( RULE, LIST) :- true
-% , nb_getval( cnf_config_pp, [_, _, _, OR])
+% , nb_getval( cnf_config_pp, [_, _, _, OR | _])
 , idx0_rule_pretty_printer( 0, RULE, LIST_CODES)
 , foldl( [X, Y, Z]>>( 
     X==[] -> Z=Y; 
     Y==[] -> Z = [X];
-    nb_getval( cnf_config_pp, [_, _, _, OR]), Z = [X, OR | Y]
+    nb_getval( cnf_config_pp, [_, _, _, OR | _]), Z = [X, OR | Y]
    )
   , LIST_CODES, [], LISTREV)
 , ( LISTREV == [] -> LIST = [`false`] ; reverse( LISTREV, LIST) )
@@ -78,11 +80,15 @@ rule_pretty_printer( RULE, LIST) :- true
 
 
 cnf_pretty_printer( CNF, FORMATTED) :- true 
-% , nb_getval( cnf_config_pp, [_, _, AND, _]) 
+% , nb_getval( cnf_config_pp, [_, _, AND | _]) 
 , maplist( rule_pretty_printer, CNF, CNF2)
 , maplist( [A, B]>>( length( A, 1) -> A=B ; append( [[`(`], A, [`)`]], B) ), CNF2, CNF3)
-, foldl( [X, Y, Z]>>( Y == [] -> Z = [X] ; nb_getval( cnf_config_pp, [_, _, AND, _]), Z = [ X, AND | Y]) , CNF3, [], FORMATTEDREV)
-, reverse( FORMATTEDREV, FORMATTED)
+, foldl( [X, Y, Z]>>( Y == [] -> Z = [X] ; nb_getval( cnf_config_pp, [_, _, AND| _]), Z = [ X, AND | Y]) , CNF3, [], FORMATTEDREV)
+, nb_getval( cnf_config_pp, [_, _, _, _, BEFORELINE, AFTERLINE])
+% , reverse( NL, NLREV)
+% , append( NLREV, FORMATTEDREV, FORMATTEDREV2)
+, reverse( FORMATTEDREV, FORMATTED_PRE)
+, append( [BEFORELINE, FORMATTED_PRE, AFTERLINE], FORMATTED)
 .
 
 /*
@@ -169,5 +175,8 @@ cnf_enumeration_pretty_printer( RULECOUNT, VARCOUNT) :- true
 % true.
 
 */
+
+% TERM= ( cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=6, cnf_pretty_printer_string( CNF, STRING), writeln( STRING)), cnf_pp_github_wrap( TERM), false.
+
 
 
