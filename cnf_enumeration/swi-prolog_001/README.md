@@ -346,9 +346,75 @@ When we have 3 literals then there exists 2^3 = 8 boolean combinations. In the p
 (\neg A \lor \neg B \lor \neg C) \land (\neg A \lor \neg B \lor C) \land A
 ```
 false.  
-
-
   
+How look all CNFs with 0 solutions?  
+  
+(cmd)?- cnf_solutioncount( 3, 3, CNF, SAT, COUNT), COUNT=0, cnf_pretty_printer_string( CNF, STRING), writeln( STRING), false.  
+```math
+\neg A \land (B \lor C) \land A
+```
+```math
+\neg A \land \neg B \land A
+```
+```math
+\neg A \land \neg B \land (A \lor B)
+```
+```math
+\neg A \land A \land B
+```
+```math
+\neg A \land (A \lor B) \land A
+```
+```math
+\neg A \land (A \lor B \lor C) \land A
+```
+```math
+(\neg A \lor B) \land \neg C \land C
+```
+```math
+(\neg A \lor B) \land \neg B \land B
+```
+```math
+(\neg A \lor B) \land \neg B \land A
+```
+```math
+(\neg A \lor B) \land \neg B \land (A \lor B)
+```
+```math
+(\neg A \lor B) \land \neg A \land A
+```
+```math
+(\neg A \lor B \lor C) \land \neg B \land B
+```
+```math
+(\neg A \lor B \lor C) \land \neg A \land A
+```
+```math
+(\neg A \lor \neg B) \land \neg C \land C
+```
+```math
+(\neg A \lor \neg B) \land A \land B
+```
+```math
+(\neg A \lor \neg B) \land \neg A \land A
+```
+```math
+(\neg A \lor \neg B) \land (\neg A \lor B) \land A
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg C \land C
+```
+```math
+(\neg A \lor \neg B \lor C) \land \neg A \land A
+```
+```math
+(\neg A \lor \neg B \lor \neg C) \land \neg A \land A
+```
+false.  
 
-
-
+And this is the amount of CNFs for a given number of solutions (SOLUTIONS - CNFs) :  
+  
+(ins)?- cnf_solutioncount_count_sequence( 3, 3, A, B), pairs_keys_values( P, A, B), writeln(P), false.  
+[0-20,1-58,2-100,3-130,4-131,5-58,6-3]  
+false.  
+  
