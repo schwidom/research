@@ -35,14 +35,18 @@
 :- consult( 'benchmark.pl').
 
 show_raising_rows( VARCOUNT) :- true
-, forall( between( 0, inf, RULECOUNT), ( true
+, LAMBDA = {VARCOUNT}/[RULECOUNT, COUNT]>>( true
    , aggregate_all( count, cnf_enumeration3( RULECOUNT, VARCOUNT, _CNF), COUNT)
    , write( COUNT)
    , write( ', ')
    , flush_output
-   , COUNT \== 0
-   ) 
+   )
+, aggregate_all( max(RULECOUNT)
+    , ( between( 0, inf, RULECOUNT), call( LAMBDA, RULECOUNT, COUNT), COUNT\==0, !)
+    , MR
   )
+, MR2 is 1 + MR
+, ignore( forall( ( between( MR2, inf, RULECOUNT), call( LAMBDA, RULECOUNT, COUNT)), COUNT\==0))
 .
 
 /*
@@ -114,7 +118,43 @@ show_raising_rows( VARCOUNT) :- true
 % (cmd)?- show_raising_rows( 5).
 % 1, 20, 637, 
 
+% (ins)?- cnf_configuration_set_has_false_rules( false), cnf_configuration_set_has_lesser_vars(false).
+% true.
+% 
 
+% (ins)?- show_raising_rows( 0).
+% 1, 0, 
+
+% (ins)?- show_raising_rows( 1).
+% 0, 2, 1, 0, 
+% 
+% (ins)?- show_raising_rows( 2).
+% 0, 3, 15, 31, 38, 31, 16, 5, 1, 0, 
+
+% (ins)?- show_raising_rows( 3).
+% 0, 4, 57, 469, 2638, 11359, 39240, ^C % 
+
+% OEIS:
+% Constant differences
+% The differences of order 2 in the difference table of depth 3 appear to become constant.
+% The next few terms would be 105017, 159374, -422877, -5466620.
+% 
+%    4    57    469   2638  11359  39240  105017  159374  -422877
+%   53   412   2169   8721  27881  65777   54357  -582251
+%  359  1757   6552  19160  37896  -11420  -636608
+% 1398  4795  12608  18736  -49316  -625188
+% 3397  7813   6128  -68052  -575872
+% 4416  -1685  -74180  -507820
+% -6101  -72495  -433640
+% -66394  -361145
+% -294751
+
+
+% (ins)?- show_raising_rows( 4).
+% 0, 5, 165, 3820, 69549, 
+
+% (ins)?- show_raising_rows( 5).
+% 0, 6, 399, 
 
 
 */
