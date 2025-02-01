@@ -1,4 +1,5 @@
 
+:- use_module( library(yall)). % lambdas
 :- use_module( library(clpb)). % ~, *([]), +([]), sat, labeling
 :- use_module( library(clpfd)). % transpose
 :- use_module( library(error)). % must_be
