@@ -1,5 +1,6 @@
 
 :- use_module( library( apply)). % exclude
+:- use_module( library(aggregate)). % aggregate_all
 
 /*
 % A powerset of n elements creates 2^n sets.
@@ -29,7 +30,21 @@ create_cnf( RULE_LESSER, RULECOUNT, VARCOUNT, CNF) :- RULECOUNT \== 0
 , create_cnf( RULE, RULECOUNT_NEXT, VARCOUNT, RULES)
 .
 
-create_cnf( RULECOUNT, VARCOUNT, CNF) :- create_cnf( 0, RULECOUNT, VARCOUNT, CNF). % 0 @< [] (true)
+create_cnf_has_lesser_vars_filter( VARCOUNT, CNF) :- true
+, nb_getval( cnf_config_has_lesser_vars, HAS_LESSER_VARS)
+, ( HAS_LESSER_VARS == true 
+     -> true 
+     ; ( true
+       , aggregate_all( set( IDX), ( member( RULE, CNF), nth0( IDX, RULE, ELEM), member( ELEM, [0, 1])), VIOTA)
+       , iota0( VARCOUNT, VIOTA)
+     )  
+  )
+.
+
+create_cnf( RULECOUNT, VARCOUNT, CNF) :- true
+, create_cnf( 0, RULECOUNT, VARCOUNT, CNF) %  0 @< [] (true)
+, create_cnf_has_lesser_vars_filter( VARCOUNT, CNF)
+. 
 
 
 /*

@@ -211,8 +211,13 @@ test( cnf_order_008_failing, [fail]) :- true
 
 run_my_tests :- true
 , cnf_configuration_set_has_false_rules( true)
+, cnf_configuration_set_has_lesser_vars( true)
 , run_tests
 , cnf_configuration_set_has_false_rules( false)
+, run_tests
+, cnf_configuration_set_has_lesser_vars( false)
+, run_tests
+, cnf_configuration_set_has_false_rules( true)
 , run_tests
 .
 

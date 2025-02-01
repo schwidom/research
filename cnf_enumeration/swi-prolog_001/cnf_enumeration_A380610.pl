@@ -1,11 +1,14 @@
 :- consult( 'main.pl').
 
-cnf_setup :- cnf_configuration_set_has_false_rules( false).
+cnf_setup :- true
+, cnf_configuration_set_has_false_rules( false)
+, cnf_configuration_set_has_lesser_vars( true).
+
 
 :- cnf_setup.
 
 cnf_enumeration( RULECOUNT, VARCOUNT, CNF) :- true
-, cnf_setup
+% , cnf_setup
 , cnf_enumeration3( RULECOUNT, VARCOUNT, CNF)
 .
 

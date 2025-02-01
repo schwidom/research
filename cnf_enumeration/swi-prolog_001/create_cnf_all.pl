@@ -1,6 +1,7 @@
 create_cnf_all( RULECOUNT, VARCOUNT, CNF) :- true
 , length( CNF, RULECOUNT)
 , maplist( create_rule( VARCOUNT), CNF)
+, create_cnf_has_lesser_vars_filter( VARCOUNT, CNF)
 .
 
 /*
