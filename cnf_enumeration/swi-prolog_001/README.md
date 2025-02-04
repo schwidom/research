@@ -31,7 +31,7 @@ true.
 ```
 false.  
   
-% The same formula cn also be printed with logical operators in utf8 
+% The same formula can also be printed with logical operators in utf8 
 
 ?- cnf_config_pp_utf8.  
 true.  
