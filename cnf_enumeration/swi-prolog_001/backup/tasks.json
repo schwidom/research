@@ -17,6 +17,21 @@
    "label": "grep bubble_compare_sets",
    "type": "shell",
    "command" : "grep -n bubble_compare_sets -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep cnf_order",
+   "type": "shell",
+   "command" : "grep -n cnf_order -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep cnf_order2",
+   "type": "shell",
+   "command" : "grep -n cnf_order2 -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep cnf_compare + cnf_order2",
+   "type": "shell",
+   "command" : "grep -n 'cnf_compare\\|cnf_order2' -r . --include='*.pl'  "
   }
  ]
 }
