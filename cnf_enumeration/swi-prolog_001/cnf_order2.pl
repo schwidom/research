@@ -1,3 +1,8 @@
+
+% see also: cnf_compare.pl
+
+% :- table cnf_order2/2. % makes no difference in the cnf_enumeration3 speed
+
 cnf_order2( CNF, CNF_ORDERED) :- true
 , cnf_maplist_msort_order_index( CNF, _CNF_GROUP, CNF_GROUP_ORDER, CNF_GROUP_ORDERED)
 , sorted_to_permutation_indicator0( CNF_GROUP_ORDERED, PERMUTATION_CLASS_IDS)

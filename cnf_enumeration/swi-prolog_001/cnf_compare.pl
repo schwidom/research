@@ -1,3 +1,6 @@
+
+% see also: cnf_order2.pl
+
 cnf_compare( CNF1, CNF2) :- true
 , cnf_maplist_msort_order_index( CNF1, _CNF1_GROUP, CNF1_GROUP_ORDER, CNF1_GROUP_ORDERED)
 , cnf_maplist_msort_order_index( CNF2, _CNF2_GROUP, CNF2_GROUP_ORDER, CNF2_GROUP_ORDERED)
@@ -10,3 +13,4 @@ cnf_compare( CNF1, CNF2) :- true
 , transposed_msort( CNF3_ORDERED, CNF3_ORDERED_TMSORT)
 , CNF1_ORDERED_TMSORT == CNF3_ORDERED_TMSORT
 .
+

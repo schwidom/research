@@ -1,0 +1,22 @@
+{
+ // See https://go.microsoft.com/fwlink/?LinkId=733558
+ // for the documentation about the tasks.json format
+ "version": "2.0.0",
+ "tasks": [
+  {
+   "label": "grep cnf_maplist_msort_order_index",
+   "type": "shell",
+   "command" : "grep -n cnf_maplist_msort_order_index -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep cnf_compare",
+   "type": "shell",
+   "command" : "grep -n cnf_compare -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep bubble_compare_sets",
+   "type": "shell",
+   "command" : "grep -n bubble_compare_sets -r . --include='*.pl'  "
+  }
+ ]
+}
