@@ -37,6 +37,11 @@
    "label": "grep cnf_solutioncount",
    "type": "shell",
    "command" : "grep -n 'cnf_solutioncount' -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep_commentfree_recursive cnf_solutioncount",
+   "type": "shell",
+   "command" : "bin/grep_commentfree_recursive.sh 'cnf_solutioncount'  "
   }
  ]
 }
