@@ -32,6 +32,11 @@
    "label": "grep cnf_compare + cnf_order2",
    "type": "shell",
    "command" : "grep -n 'cnf_compare\\|cnf_order2' -r . --include='*.pl'  "
+  },
+  {
+   "label": "grep cnf_solutioncount",
+   "type": "shell",
+   "command" : "grep -n 'cnf_solutioncount' -r . --include='*.pl'  "
   }
  ]
 }
