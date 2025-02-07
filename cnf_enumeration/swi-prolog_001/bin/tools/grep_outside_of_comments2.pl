@@ -108,3 +108,7 @@ ignore( ( exists_file( DIR ) -> file_name_extension( _, '.pl', DIR) -> call( GOA
 
 
 directory_recurse_on_plfiles( GOAL) :- directory_recurse_on_plfiles( GOAL, '.').
+
+grepfile4( FIXEDCODES) :- true
+, directory_recurse_on_plfiles( [FILE]>>(grepfile3( FILE, FIXEDCODES)), '.')
+.
