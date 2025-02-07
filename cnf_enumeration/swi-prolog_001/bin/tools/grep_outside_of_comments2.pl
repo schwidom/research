@@ -94,3 +94,17 @@ forall( ( member( E, RESULT), E = (file( FNAME, LN, _, _), LINE)), ( true
    , nl
   )) ; true
 .
+
+directory_recurse_on_plfiles( GOAL, DIR) :- 
+exists_directory(DIR) -> forall( (directory_files( DIR, LIST)
+    , member( ENTRY, LIST)
+    , ENTRY \== '..'
+    , ENTRY \== '.'
+    , string_concat( DIR, '/', DIR2), string_concat( DIR2, ENTRY, ENTRY2) )
+   , directory_recurse_on_plfiles( GOAL, ENTRY2)) ;
+
+ignore( ( exists_file( DIR ) -> file_name_extension( _, '.pl', DIR) -> call( GOAL, DIR) ))
+.
+
+
+directory_recurse_on_plfiles( GOAL) :- directory_recurse_on_plfiles( GOAL, '.').
